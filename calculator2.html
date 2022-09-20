@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css">
+
+
+
+
+    <style>
+
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        .corpo {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            background: linear-gradient(30deg, rgba(172,172,172,1) 0%, rgba(163,163,163,1) 35%, rgba(68,75,77,1) 100%);
+            border: 2vw outset rgb(130,130,130); 
+            gap: 1vw;
+            padding: 0.5vw;
+            border-radius: 3vw;
+            width: 44vw;
+            position: relative;
+            text-align: right;
+            font-size: 4vw;
+            margin: auto;
+        
+        }
+
+        .botao {
+            font-size: 4vw;
+            padding: 2vw;
+            text-align: center;
+            border-radius: 20%;
+            width: 10vw;
+            height: 10vw;
+            border-style: double;
+            border-color: grey;
+                         
+        }
+
+        .visor {
+            color: rgb(255,255,255);
+            width: 37.5vw;
+            grid-column: 1 / span 4;
+            background-color: rgb(91, 121, 121);
+            border-style: groove;
+            padding: 2.9vw;
+            height: 5vw;
+            position: relative;
+            
+        }
+        
+        .visorOn {
+            background-color: rgb(121, 202, 221);
+            color: rgb(255,255,255);
+            width: 37.5vw;
+            grid-column: 1 / span 4;
+            border-style: groove;
+            padding: 2.9vw;
+            height: 5vw;
+            position: relative;
+            
+        }
+
+        .topDisplay {
+            font-size: 2.5vw;
+            padding: 0.3vw;
+            position: absolute;
+            right: 0.5vw;
+            top: 0.2vw;
+            max-width: 41vw;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-end;
+            
+        }
+
+        .bottomDisplay {
+            font-size: 5vw;
+            padding: 0.2vw;
+            position: absolute;
+            right: 0.5vw;
+            bottom: 0.2vw;
+            max-width: 41vw;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-end;
+        }
+       
+    
+        .logo {
+            grid-column: 1 / span 1;
+            width: 3.5vw;
+            margin-left: 1vw;
+            position: absolute;
+            top: 2vw;
+            left: 2vw;
+        
+        }
+
+        .luz {
+            grid-column: 4 / span 1;
+            font-size: 5vw;
+            padding-top: 1vw;
+            margin-right: 1vw;
+            
+        }
+      
+        .number {
+            background-color: rgb(221,221,221);
+        }
+
+        .symbol {
+            background-color: rgb(255,255,204);
+        }
+
+        .clear {
+            background-color: rgb(255,153,153) ;
+        }
+        
+        .backspace {
+            background-color: rgb(101,101,101);
+        }
+
+        .equal {
+            background-color: rgb(153,204,255);
+        }
+
+        .botao:hover {
+            cursor: pointer;
+        }
+        .number:hover {
+            background-color: rgb(181, 181, 181);
+        }
+
+        .symbol:hover {
+            background-color: rgb(255,255,153);
+        }
+
+        .clear:hover {
+            background-color: rgb(255,102,102) ;
+        }
+        
+
+        .equal:hover {
+            background-color: rgb(102,178,255);
+        }
+
+
+
+
+    </style>
+
+<script>
+
+    function lightOn() {
+        // liga e desliga a luz de fundo
+        let $element = document.getElementById('visor');
+        //$element.classList.toggle('visorOn');
+
+        // trocar o simbolo do botão
+        let $btn = document.getElementById('toggleBtn')
+
+        //$btn.classList.remove('fa-toggle-on');
+        //$btn.classList.add('fa-toggle-off');
+
+        if ($btn.classList.contains('fa-toggle-on')) {
+            // verdade
+            $btn.classList.replace('fa-toggle-on', 'fa-toggle-off');
+            $element.classList.replace('visor', 'visorOn')
+        } else {
+            // falso
+            $btn.classList.replace('fa-toggle-off', 'fa-toggle-on');
+            $element.classList.replace('visorOn', 'visor')
+        }
+    }
+
+    // função para colocar valores no display
+
+    function dados(n) {
+       
+        let $display = document.getElementById('dados').innerHTML;
+        let $lastChar = $display.slice(-1);
+        let $firstChar = $display.slice (1);
+        
+        switch (n) {
+                case '/':
+                case '*':
+                case '+':
+                case '-':
+                    // activa o botão do .
+                    document.getElementById('dot').disabled = false;
+                    if ($lastChar == '/' || $lastChar == '*' || $lastChar == '-' || $lastChar == '+') {
+                        bckspc();
+                    }
+                    break;
+                    
+                case '.':
+                    // desactiva o botão do .
+                    document.getElementById('dot').disabled = true;
+            
+                }
+
+            if ($display == '0' && n == '.') {
+                document.getElementById('dados').innerHTML += n;
+
+            } else if ($display == '0') {
+                document.getElementById('dados').innerHTML = n;
+                
+            } else {
+                document.getElementById('dados').innerHTML += n;
+            }
+        
+
+        
+        
+    }
+
+    // função de resolver contas
+
+    function resultado() {
+        
+        let $dados = document.getElementById('dados').innerHTML;
+
+        let $result = eval($dados);
+        document.getElementById('dados').innerHTML += '=';
+        document.getElementById('resultados').innerHTML = $result * 10 / 10;
+
+       
+    }
+   
+    // função para limpar 1 caracter
+
+    function bckspc() {
+
+        let $display = document.getElementById('dados').innerHTML;
+        let $disp_temp = $display.slice(0, -1);
+        let $lastChar = $display.slice(-1);
+
+        switch ($lastChar) {
+                case '.':
+                    document.getElementById('dot').disabled = false;
+                    break;
+                case '/':
+                case '*':
+                case '+':
+                case '-':
+                    document.getElementById('dot').disabled = $disp_temp.lastIndexOf('.') > Math.max($disp_temp.lastIndexOf('+'), $disp_temp.lastIndexOf('-'), $disp_temp.lastIndexOf('*'), $disp_temp.lastIndexOf('/'));
+                    break;
+            }
+        
+        let $dados = document.getElementById('dados').innerHTML;
+           
+            if ($dados.length == 1) {
+                document.getElementById('dados').innerHTML = '0'
+            } else {
+                document.getElementById('dados').innerHTML = $dados.slice(0, $dados.length -1);
+            }
+
+        
+      
+
+
+}
+    
+    // função para limpar todos os valores
+    function limpar() {
+
+       
+        document.getElementById('dot').disabled = false;
+        
+        document.getElementById('dados').innerHTML = '0';
+        document.getElementById('resultados').innerHTML = '0';
+        
+
+
+}
+
+    function numpad(e) {
+        let $key = e.keyCode;
+
+        switch ($key) {
+                // functions
+                case 8: // Backspace
+                    bckspc();
+                    break;
+                case 46: // Delete
+                    limpar();
+                    break;
+                case 13: // Enter
+                case 187: // Equal
+                    resultado();
+                    break;
+                // operators
+                case 111: // NumpadDivide
+                    dados('/');
+                    break;
+                case 106: // NumpadMultiply
+                    dados('*');
+                    break;
+                case 189: // Minus
+                case 109: // NumpadSubtract
+                    dados('-');
+                    break;
+                case 107: // NumpadAdd
+                    dados('+');
+                    break;
+                // numbers
+                case 49: // Digit1
+                case 97: // Numpad1
+                    dados('1');
+                    break;
+                case 50: // Digit2
+                case 98: // Numpad2
+                    dados('2');
+                    break;
+                case 51: // Digit3
+                case 99: // Numpad3
+                    dados('3');
+                    break;
+                case 52: // Digit4
+                case 100: // Numpad4
+                    dados('4');
+                    break;
+                case 53: // Digit5
+                case 101: // Numpad5
+                    dados('5');
+                    break;
+                case 54: // Digit6
+                case 102: // Numpad6
+                    dados('6');
+                    break;
+                case 55: // Digit7
+                case 103: // Numpad7
+                    dados('7');
+                    break;
+                case 56: // Digit8
+                case 104: // Numpad8
+                    dados('8');
+                    break;
+                case 57: // Digit9
+                case 105: // Numpad9
+                    dados('9');
+                    break;
+                case 48: // Digit0
+                case 96: // Numpad0
+                    dados('0');
+                    break;
+                case 188: // Comma
+                case 190: // Period
+                case 110: // NumpadDecimal
+                    dados('.');
+                    break;
+            }
+    }
+
+</script>
+
+
+
+</head>
+<body onkeydown="numpad(event)">
+    <h1>Calc</h1>
+   
+    
+    <div class="corpo">
+        
+        <div class="logo"><svg class="svg" enable-background="new 0 0 2499.6 2500" viewBox="0 0 2499.6 2500" xmlns="http://www.w3.org/2000/svg"><path d="m1187.9 1187.9h-1187.9v-1187.9h1187.9z" fill="#f1511b"/><path d="m2499.6 1187.9h-1188v-1187.9h1187.9v1187.9z" fill="#80cc28"/><path d="m1187.9 2500h-1187.9v-1187.9h1187.9z" fill="#00adef"/><path d="m2499.6 2500h-1188v-1187.9h1187.9v1187.9z" fill="#fbbc09"/></svg></div>
+        
+        <div class="luz">
+           <i id="toggleBtn" onclick="lightOn();" class="fa-solid fa-toggle-on"></i>
+        </div>
+
+        <div class="visor" id="visor">
+            <div class="topDisplay" id="dados" >0</div>
+            <div class="bottomDisplay" id="resultados" >0</div>
+        </div>
+    
+        <div><button class="botao symbol" onclick="dados('(');" value="(">(</button></div>
+        <div><button class="botao symbol" onclick="dados(')');" value=")">)</button></div>
+        <div><button class="botao clear" onclick="limpar();" value="C">C</button></div>
+        <div><button class="botao symbol" onclick="bckspc();" value="B"><i class="fa-solid fa-delete-left"></i></button></div>
+        <div><button class="botao number" onclick="dados('7');" value="7">7</button></div>
+        <div><button class="botao number" onclick="dados('8');" value="8">8</button></div>
+        <div><button class="botao number" onclick="dados('9');" value="9">9</button></div>
+        <div><button class="botao symbol" onclick="dados('/');" value="&divide;"><i class="fa-solid fa-divide"></i></button></div>
+        <div><button class="botao number" onclick="dados('4');" value="4">4</button></div>
+        <div><button class="botao number" onclick="dados('5');" value="5">5</button></div>
+        <div><button class="botao number" onclick="dados('6');" value="6">6</button></div>
+        <div><button class="botao symbol" onclick="dados('*');" value="&times;"><i class="fa-solid fa-xmark"></i></button></div>
+        <div><button class="botao number" onclick="dados('1');" value="1">1</button></div>
+        <div><button class="botao number" onclick="dados('2');" value="2">2</button></div>
+        <div><button class="botao number" onclick="dados('3');" value="3">3</button></div>
+        <div><button class="botao symbol" onclick="dados('-');" value="&minus;"><i class="fa-solid fa-minus"></i></button></div>
+        <div><button id="dot"class="botao symbol" onclick="dados('.');" value="."><div class=".">.</div></button></div>
+        <div><button class="botao number" onclick="dados('0');" value="0">0</button></div>
+        <div><button class="botao equal" onclick="resultado();" value="&equals;"><i class="fa-solid fa-equals"></i></button></div>
+        <div><button class="botao symbol" onclick="dados('+');" value="&plus;"><i class="fa-solid fa-plus"></i></button></div>
+        
+    </div>
+
+
+    
+</body>
+</html>

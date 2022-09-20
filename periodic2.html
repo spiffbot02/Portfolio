@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabel Periódica</title>
+    
+    <style>
+
+    html, .empty {
+        background-color: rgb(204, 204, 204);
+        text-align: center;
+    }
+
+   
+    .naometais,.box1 {
+        background-color: rgb(247, 103, 103);
+        width: 50px;
+        height: 50px;
+        transition: 0.2s ease;
+    }
+  
+    .metaisal,.box2 {
+        background-color: rgb(145, 116, 74);
+        width: 50px;
+        height: 50px;
+        transition: 0.2s ease;
+    }
+    
+    .metaisaltr,.box3 {
+        background-color: rgb(255, 172, 47);
+        width: 50px;
+        height: 50px;
+        transition: 0.2s ease;
+    }
+                      
+    .metaistra,.box4 {
+        background-color: rgb(36, 108, 202);
+        width: 50px;
+        height: 50px;
+        transition: 0.2s ease;
+    }      
+
+    .outrosmetais,.box5 {
+        background-color: rgb(141, 165, 143);
+        width: 50px;
+        height: 50px;
+        transition: 0.2s ease;
+    }
+    
+    .semimetais,.box6 {
+        background-color: rgb(253, 209, 66);
+        width: 50px;
+        height: 50px;
+        transition: 0.2s ease;
+    }     
+    
+    .halogeneos,.box7 {
+        background-color: rgb(135, 161, 40);
+        width: 50px;
+        height: 50px;
+        transition: 0.2s ease;
+    }
+
+    .gasesnobres,.box8 {
+        background-color: rgb(96, 194, 255);
+        width: 50px;
+        height: 50px;
+        transition: 0.2s ease;
+    }
+
+    .lantanideos,.box9 {
+        background-color: rgb(255, 113, 255);
+        width: 50px;
+        height: 50px;
+        transition: 0.2s ease;
+    }
+    
+    .actinideos,.box10 {
+        background-color: rgb(71, 122, 51);
+        width: 50px;
+        height: 50px;
+        transition: 0.2s ease;
+    }
+    
+    
+    /*.elements:hover {
+        background-color: rgba(221, 37, 37, 0.8);
+        transform: scale(2,2);
+        transition: 200ms;
+        cursor: pointer;
+        font-family: Arial;
+    }*/
+    
+    .naometais:hover, .gasesnobres:hover, .metaisal:hover, .metaisaltr:hover, .actinideos:hover, .lantanideos:hover, .halogeneos:hover, .outrosmetais:hover, .semimetais:hover, .metaistra:hover  {
+        border-color: rgba(0,0,0,0.1);
+        transform: scale(2,2);
+        z-index: 1;
+        
+        
+    }
+
+    .box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8, .box9, .box10 {
+        width: 20px;
+        height: 20px;
+    } 
+
+    .periodica {
+        margin: auto;
+        width: 80%;
+        padding: 50px;
+        text-align: center;
+        font-family: Arial;
+        font-size: 20px; 
+   }
+
+   .numero {
+        font-size: 10px;
+
+   }
+    .detalhes {
+        padding-top: 5px;
+        font-size: 7px;
+   }
+
+   .blank {
+        width: 100%;
+        height: 25px;
+    }
+
+    td, canvas {
+        border: solid 1px red;
+    }
+
+</style>
+    </style>
+
+</head>
+
+<body>
+    <h1>Aula de Química</h1>
+    <table class="periodica">
+        <tr>
+            <td class="naometais">
+                <div class="elements">
+                    <div class="numero">1</div>
+                    <div class="simbolo">H</div>
+                    <div class="detalhes">Hidrogénio<br />1.008</div>
+                </div>
+            </td>
+            <td> </td>
+            <td colspan="10">
+                <div>Tabela Periódica</div>
+            </td>
+            <td colspan="5"><!--button type="button" class="imprimir" onclick="window.print();"></button-->
+            <td class="gasesnobres">
+                <div class="elements">
+                    <div class="numero">2</div>
+                    <div class="simbolo">He</div>
+                    <div class="detalhes">Hélio</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="metaisal">
+                <div class="numero">3</div>
+                <div>Li</div>
+                <div class="detalhes">Lítio</div>
+            </td>
+            <td class="metaisaltr">
+                <div class="numero">4</div>
+                <div>Be</div>
+                <div class="detalhes">Berílio</div>
+            </td>
+            <td colspan="10" rowspan="2"> </td>
+            <td class="semimetais">
+                <div class="numero">5</div>
+                <div>B</div>
+                <div class="detalhes">Boro</div>
+            </td>
+            <td class="naometais">
+                <div class="numero">6</div>
+                <div>C</div>
+                <div class="detalhes">Carbono</div>
+            </td>
+            <td class="naometais">
+                <div class="numero">7</div>
+                <div>N</div>
+                <div class="detalhes">Nitrogénio</div>
+            </td>
+            <td class="naometais">
+                <div class="numero">8</div>
+                <div>O</div>
+                <div class="detalhes">Oxigénio</div>
+            </td>
+            <td class="halogeneos">
+                <div class="numero">9</div>
+                <div>F</div>
+                <div class="detalhes">Flúor</div>
+            </td>
+            <td class="gasesnobres">
+                <div class="numero">10</div>
+                <div>Ne</div>
+                <div class="detalhes">Néon</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="metaisal">
+                <div class="numero">11</div>
+                <div>Na</div>
+                <div class="detalhes">Sódio</div>
+            </td>
+            <td class="metaisaltr">
+                <div class="numero">12</div>
+                <div>Mg</div>
+                <div class="detalhes">Magnésio</div>
+            </td>
+            <td class="outrosmetais">
+                <div class="numero">13</div>
+                <div>Al</div>
+                <div class="detalhes">Alumínio</div>
+            </td>
+            <td class="semimetais">
+                <div class="numero">14</div>
+                <div>Si</div>
+                <div class="detalhes">Silício</div>
+            </td>
+            <td class="naometais">
+                <div class="numero">15</div>
+                <div>P</div>
+                <div class="detalhes">Fósforo</div>
+            </td>
+            <td class="naometais">
+                <div class="numero">16</div>
+                <div>S</div>
+                <div class="detalhes">Enxofre</div>
+            </td>
+            <td class="halogeneos">
+                <div class="numero">17</div>
+                <div>Cl</div>
+                <div class="detalhes">Cloro</div>
+            </td>
+            <td class="gasesnobres">
+                <div class="numero">18</div>
+                <div>Ar</div>
+                <div class="detalhes">Árgon</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="metaisal">
+                <div class="numero">19</div>
+                <div>K</div>
+                <div class="detalhes">Potássio</div>
+            </td>
+            <td class="metaisaltr">
+                <div class="numero">20</div>
+                <div>Ca</div>
+                <div class="detalhes">Cálcio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">21</div>
+                <div>Sc</div>
+                <div class="detalhes">Escândio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">22</div>
+                <div>Ti</div>
+                <div class="detalhes">Titânio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">23</div>
+                <div>V</div>
+                <div class="detalhes">Vanádio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">24</div>
+                <div>Cr</div>
+                <div class="detalhes">Crómio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">25</div>
+                <div>Mn</div>
+                <div class="detalhes">Manganês</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">26</div>
+                <div>Fe</div>
+                <div class="detalhes">Ferro</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">27</div>
+                <div>Co</div>
+                <div class="detalhes">Cobalto</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">28</div>
+                <div>Ni</div>
+                <div class="detalhes">Níquel</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">29</div>
+                <div>Cu</div>
+                <div class="detalhes">Cobre</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">30</div>
+                <div>Zn</div>
+                <div class="detalhes">Zinco</div>
+            </td>
+            <td class="outrosmetais">
+                <div class="numero">31</div>
+                <div>Ga</div>
+                <div class="detalhes">Gálio</div>
+            </td>
+            <td class="semimetais">
+                <div class="numero">32</div>
+                <div>Ge</div>
+                <div class="detalhes">Germânio</div>
+            </td>
+            <td class="semimetais">
+                <div class="numero">33</div>
+                <div>As</div>
+                <div class="detalhes">Arsénio</div>
+            </td>
+            <td class="naometais">
+                <div class="numero">34</div>
+                <div>Se</div>
+                <div class="detalhes">Selénio</div>
+            </td>
+            <td class="halogeneos">
+                <div class="numero">35</div>
+                <div>Br</div>
+                <div class="detalhes">Bromo</div>
+            </td>
+            <td class="gasesnobres">
+                <div class="numero">36</div>
+                <div>Kr</div>
+                <div class="detalhes">Cripton</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="metaisal">
+                <div class="numero">37</div>
+                <div>Rb</div>
+                <div class="detalhes">Rubídio</div>
+            </td>
+            <td class="metaisaltr">
+                <div class="numero">38</div>
+                <div>Sr</div>
+                <div class="detalhes">Estrôncio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">39</div>
+                <div>Y</div>
+                <div class="detalhes">Ítrío</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">40</div>
+                <div>Zr</div>
+                <div class="detalhes">Zircónio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">41</div>
+                <div>Nb</div>
+                <div class="detalhes">Nióbio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">42</div>
+                <div>Mo</div>
+                <div class="detalhes">Molibdénio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">43</div>
+                <div>Tc</div>
+                <div class="detalhes">Tecnécio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">44</div>
+                <div>Ru</div>
+                <div class="detalhes">Ruténio</div>
+            </td>    
+            <td class="metaistra">    
+                <div class="numero">45</div>
+                <div>Rh</div>
+                <div class="detalhes">Ródio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">46</div>
+                <div>Pd</div>
+                <div class="detalhes">Paládio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">47</div>
+                <div>Ag</div>
+                <div class="detalhes">Prata</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">48</div>
+                <div>Cd</div>
+                <div class="detalhes">Cádmio</div>
+            </td>
+            <td class="outrosmetais">
+                <div class="numero">49</div>
+                <div>In</div>
+                <div class="detalhes">Índio</div>
+            </td>
+            <td class="outrosmetais">
+                <div class="numero">50</div>
+                <div>Sn</div>
+                <div class="detalhes">Estanho</div>
+            </td>
+            <td class="semimetais">
+                <div class="numero">51</div>
+                <div>Sb</div>
+                <div class="detalhes">Antimónio</div>
+            </td>
+            <td class="semimetais">
+                <div class="numero">52</div>
+                <div>Te</div>
+                <div class="detalhes">Telúrio</div>
+            </td>
+            <td class="halogeneos">
+                <div class="numero">53</div>
+                <div>I</div>
+                <div class="detalhes">Iodo</div>
+            </td>
+            <td class="gasesnobres">
+                <div class="numero">54</div>
+                <div>Xe</div>
+                <div class="detalhes">Xénon</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="metaisal">
+                <div class="numero">55</div>
+                <div>Cs</div>
+                <div class="detalhes">Césio</div>
+            </td>
+            <td class="metaisaltr">
+                <div class="numero">56</div>
+                <div>Ba</div>
+                <div class="detalhes">Bário</div>
+            </td>
+            <td rowspan="2">
+                <div class="arrow">
+                </div>    
+            </td>
+            <td class="metaistra">
+                <div class="numero">72</div>
+                <div>Hf</div>
+                <div class="detalhes">Háfnio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">73</div>
+                <div>Ta</div>
+                <div class="detalhes">Tântalo</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">74</div>
+                <div>W</div>
+                <div class="detalhes">Tungsténio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">75</div>
+                <div>Re</div>
+                <div class="detalhes">Rénio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">76</div>
+                <div>Os</div>
+                <div class="detalhes">Ósmio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">77</div>
+                <div>Ir</div>
+                <div class="detalhes">Irídio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">78</div>
+                <div>Pt</div>
+                <div class="detalhes">Platina</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">79</div>
+                <div>Au</div>
+                <div class="detalhes">Ouro</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">80</div>
+                <div>Hg</div>
+                <div class="detalhes">Mercúrio</div>
+            </td>
+            <td class="outrosmetais">
+                <div class="numero">81</div>
+                <div>Tl</div>
+                <div class="detalhes">Tálio</div>
+            </td>
+            <td class="outrosmetais">
+                <div class="numero">82</div>
+                <div>Pb</div>
+                <div class="detalhes">Chumbo</div>
+            </td>
+            <td class="outrosmetais">
+                <div class="numero">83</div>
+                <div>Bi</div>
+                <div class="detalhes">Bismuto</div>
+            </td>
+            <td class="semimetais">
+                <div class="numero">84</div>
+                <div>Po</div>
+                <div class="detalhes">Polónio</div>
+            </td>
+            <td class="halogeneos">
+                <div class="numero">85</div>
+                <div>At</div>
+                <div class="detalhes">Ástato</div>
+            </td>
+            <td class="gasesnobres">
+                <div class="numero">86</div>
+                <div>Rn</div>
+                <div class="detalhes">Rádon</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="metaisal">
+                <div class="numero">87</div>
+                <div>Fr</div>
+                <div class="detalhes">Frâncio</div>
+            </td>
+            <td class="metaisaltr">
+                <div class="numero">88</div>
+                <div>Ra</div>
+                <div class="detalhes">Rádio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">104</div>
+                <div>Rf</div>
+                <div class="detalhes">Rutherfórdio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">105</div>
+                <div>Db</div>
+                <div class="detalhes">Dúbnio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">106</div>
+                <div>Sg</div>
+                <div class="detalhes">Seabórgio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">107</div>
+                <div>Bh</div>
+                <div class="detalhes">Bóhrio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">108</div>
+                <div>Hs</div>
+                <div class="detalhes">Hássio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">109</div>
+                <div>Mt</div>
+                <div class="detalhes">Meitnério</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">110</div>
+                <div>Ds</div>
+                <div class="detalhes">Darmstácio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">111</div>
+                <div>Rg</div>
+                <div class="detalhes">Roentgénio</div>
+            </td>
+            <td class="metaistra">
+                <div class="numero">112</div>
+                <div>Cn</div>
+                <div class="detalhes">Copernício</div>
+            </td>
+            <td class="outrosmetais">
+                <div class="numero">113</div>
+                <div>Nh</div>
+                <div class="detalhes">Nipónio</div>
+            </td>
+            <td class="outrosmetais">
+                <div class="numero">114</div>
+                <div>Fi</div>
+                <div class="detalhes">Fleróvio</div>
+            </td>
+            <td class="outrosmetais">
+                <div class="numero">115</div>
+                <div>Mc</div>
+                <div class="detalhes">Moscóvio</div>
+            </td>
+            <td class="outrosmetais">
+                <div class="numero">116</div>
+                <div>Lv</div>
+                <div class="detalhes">Livermório</div>
+            </td>
+            <td class="halogeneos">
+                <div class="numero">117</div>
+                <div>Ts</div>
+                <div class="detalhes">Tenesso</div>
+            </td>
+            <td class="gasesnobres">
+                <div class="numero">118</div>
+                <div>Og</div>
+                <div class="detalhes">Oganésson</div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="18">
+                <div class="blank"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="empty" colspan="3" rowspan="2"> 
+               
+                <div class="arrow"> 
+                    
+                </div>
+                
+            </td>
+            <td class="lantanideos">
+                <div class="numero">57</div>
+                <div>La</div>
+                <div class="detalhes">Lantânio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">58</div>
+                <div>Ce</div>
+                <div class="detalhes">Cério</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">59</div>
+                <div>Pr</div>
+                <div class="detalhes">Praseodímio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">60</div>
+                <div>Nd</div>
+                <div class="detalhes">Neodímio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">61</div>
+                <div>Pm</div>
+                <div class="detalhes">Promécio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">62</div>
+                <div>Sm</div>
+                <div class="detalhes">Samário</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">63</div>
+                <div>Eu</div>
+                <div class="detalhes">Európio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">64</div>
+                <div>Gd</div>
+                <div class="detalhes">Gadolínio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">65</div>
+                <div>Tb</div>
+                <div class="detalhes">Térbio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">66</div>
+                <div>Dy</div>
+                <div class="detalhes">Dispórsio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">67</div>
+                <div>Ho</div>
+                <div class="detalhes">Hólmio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">68</div>
+                <div>Er</div>
+                <div class="detalhes">Érbio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">69</div>
+                <div>Tm</div>
+                <div class="detalhes">Túlio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">70</div>
+                <div>Yb</div>
+                <div class="detalhes">Itérbio</div>
+            </td>
+            <td class="lantanideos">
+                <div class="numero">71</div>
+                <div>Lu</div>
+                <div class="detalhes">Lutécio</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="actinideos">
+                <div class="numero">89</div>
+                <div>Ac</div>
+                <div class="detalhes">Actínio</div>
+            </td>
+            <td  class="actinideos">
+                <div class="numero">90</div>
+                <div>Th</div>
+                <div class="detalhes">Tório</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">91</div>
+                <div>Pa</div>
+                <div class="detalhes">Proactínio</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">92</div>
+                <div>U</div>
+                <div class="detalhes">Urânio</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">93</div>
+                <div>Np</div>
+                <div class="detalhes">Neptúnio</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">94</div>
+                <div>Pu</div>
+                <div class="detalhes">Plutónio</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">95</div>
+                <div>Am</div>
+                <div class="detalhes">Americio</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">96</div>
+                <div>Cm</div>
+                <div class="detalhes">Cúrio</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">97</div>
+                <div>Bk</div>
+                <div class="detalhes">Berkélio</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">98</div>
+                <div>Cf</div>
+                <div class="detalhes">Califórnio</div>
+            </td>
+            <td class="actinideos">
+                <div>99</div>
+                <div>Es</div>
+                <div class="detalhes">Einsténio</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">100</div>
+                <div>Fm</div>
+                <div class="detalhes">Férmio</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">101</div>
+                <div>Md</div>
+                <div class="detalhes">Mendelévio</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">102</div>
+                <div>No</div>
+                <div class="detalhes">Nobélio</div>
+            </td>
+            <td class="actinideos">
+                <div class="numero">103</div>
+                <div>Lr</div>
+                <div class="detalhes">Lawrêncio</div>
+            </td>
+        </tr>
+    </table>
+<br>
+    <table>  
+       <tr>
+            <td class="box1"> </td>
+            <td>Não Metais</td>
+            
+            <td class="box2"> </td>
+            <td>Metais alcalino</td>
+            
+            <td class="box3"> </td>
+            <td>Semimetais</td>
+            
+            <td class="box4"> </td>
+            <td>Outros metais</td>
+            
+            <td class="box5" > </td>
+            <td>Lantanideos</td>
+        
+        </tr>
+        <tr>
+            <td class="box6"> </td>
+            <td>Gases Nobres</td>
+            
+            <td class="box7"> </td>
+            <td>Metais alcalino-terrosos</td>
+            
+            <td class="box8"> </td>
+            <td>Halogéneos</td>
+            
+            <td class="box9"> </td>
+            <td>Metais de transição</td>
+
+            <td class="box10"> </td>
+            <td>Actinídeos</td>
+            
+        </tr>
+    </table>
+
+</body>
+</html>
